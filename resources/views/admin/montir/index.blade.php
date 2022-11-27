@@ -14,7 +14,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Table Montir</h6>
             </div>
             <div class="card-body">
-                <a href="{{ route('admin.montir.create') }}" class="btn btn-primary"> Booking </a>
+                <a href="{{ route('admin.montir.create') }}" class="btn btn-primary"> Tambah Montir </a>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -40,11 +40,12 @@
                                         <form action="{{ route('montir.destroy', $mntr->id) }}" method="POST">
                                             <a href="{{ route('admin.montir.detail', $mntr->id) }}"
                                                 class="btn btn-primary">Detail</a>
-                                            <a href="{{ route('admin.montir.edit', $mntr->id) }}" class="btn btn-warning">Edit</a>
+                                            <a href="{{ route('admin.montir.edit', $mntr->id) }}"
+                                                class="btn btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Yakin Di Hapus?')">Delete</button>
+                                                onclick="myalert()">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -54,7 +55,18 @@
                 </div>
             </div>
         </div>
-
+        <script>
+            function myalert() {
+                // swal({
+                //     title: "Sukses",
+                //     text: "Data kosong!",
+                //     type: "info",
+                //     showCancelButton: true,
+                //     confirmButtonColor: "#DD6B55",
+                // });
+                swal("Good job!", "anda berhasil menghapus data ini!", "success");
+            }
+        </script>
     </div>
     <!-- /.container-fluid -->
 @endsection

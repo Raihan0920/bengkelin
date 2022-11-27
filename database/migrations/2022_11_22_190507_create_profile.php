@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->id();
+            $table->varchar('photo');
             $table->string('name');
             $table->enum('gender', ['L', 'P']);
             $table->data('alamat');

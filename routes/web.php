@@ -25,13 +25,22 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/data-user', function () {
+    return 'ini adalah data user';
+})->middleware('auth', 'role:user|admin');
+
+Route::get('/data-admin', function () {
+    return 'ini adalah data admin';
+})->middleware('auth', 'role:admin');
+
 Route::middleware('auth')->group(function () {
     
     Route::get('/adm', function () {
         return view('admin.master');
     });
+
     
-    
+    //MONTIR
     // Route::get('/admin', [MontirController::class, 'admin.montir.index']);
     Route::get('/montir', [controllerMontir::class, 'index'])->name('montir.index');
     route::get('/create', [controllerMontir::class, 'create'])->name('admin.montir.create');
@@ -40,11 +49,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/{id}', [controllerMontir::class, 'update'])->name('admin.montir.update');
     Route::get('/{id}/detail', [controllerMontir::class, 'detail'])->name('admin.montir.detail');
     Route::delete('/{id}/destroy', [controllerMontir::class, 'destroy'])->name('montir.destroy');
-    Route::get('/pelanggan', [controllerPelanggan::class, 'pelanggan'])->name('pelanggan.pelanggan');
     Route::get('/montir-pdf', [ControllerMontir::class, 'montirPDF']);
     Route::get('/montir-excel', [ControllerMontir::class, 'montirExcel']);
+
+    //Pelanggan
+    Route::get('/pelanggan', [controllerPelanggan::class, 'pelanggan'])->name('pelanggan.pelanggan');
     Route::get('/pelanggan-pdf', [ControllerPelanggan::class, 'pelangganPDF']);
     Route::get('/pelanggan-excel', [ControllerPelanggan::class, 'pelangganExcel']);
     
-    
+    //PROFILE
+    Route::get('/profile', [controllerProfile::class, 'profile'])->name('admin.profile.profile');
+    // Route::get('/profile-pdf', [ControllerPelanggan::class, 'profilePDF']);
 });

@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     @if ($user->photo)
-                                        <img src="{{ asset('' . $user->photo) }}"
+                                        <img src="{{ asset('img ' . $user->photo) }}"
                                             class="img-thumbnail rounded mx-auto d-block">
                                     @else
                                         <img src="{{ asset('img/profile.png') }}"
@@ -63,9 +63,9 @@
                                             placeholder="08**********">
                                     </div>
                                     <div class="form-group">
-                                        <label for="NAMA">email</label>
-                                        <input type="text" name="telp" class="form-control"
-                                            placeholder="08**********">
+                                        <input type="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter Email Address..." name="email">
                                     </div>
                                     <div class="row mb-3">
                                         <label for="password-confirm"
