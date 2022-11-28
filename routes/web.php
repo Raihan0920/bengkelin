@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\controllerMontir;
 use App\Http\Controllers\controllerPelanggan;
+use App\Http\Controllers\controllerSparepart;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,12 @@ Route::get('/data-admin', function () {
 })->middleware('auth', 'role:admin');
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/adm', function () {
         return view('admin.master');
     });
 
-    
+
     //MONTIR
     // Route::get('/admin', [MontirController::class, 'admin.montir.index']);
     Route::get('/montir', [controllerMontir::class, 'index'])->name('montir.index');
@@ -56,8 +57,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/pelanggan', [controllerPelanggan::class, 'pelanggan'])->name('pelanggan.pelanggan');
     Route::get('/pelanggan-pdf', [ControllerPelanggan::class, 'pelangganPDF']);
     Route::get('/pelanggan-excel', [ControllerPelanggan::class, 'pelangganExcel']);
-    
+
     //PROFILE
     Route::get('/profile', [controllerProfile::class, 'profile'])->name('admin.profile.profile');
     // Route::get('/profile-pdf', [ControllerPelanggan::class, 'profilePDF']);
+
+    //Sparepart
+    Route::get('/sparepart', [controllerSparepart::class, 'index'])->name('sparepart.index');
+    route::get('/create', [controllerSparepart::class, 'create'])->name('admin.sparepart.create');
+    route::post('/store', [controllerSparepart::class, 'store'])->name('admin.sparepart.store');
+    Route::get('/{id}/edit', [controllerSparepart::class, 'edit'])->name('admin.sparepart.edit');
+    Route::put('/{id}', [controllerSparepart::class, 'update'])->name('admin.sparepart.update');
+    Route::get('/{id}/detail', [controllerSparepart::class, 'detail'])->name('admin.sparepart.detail');
+    Route::delete('/{id}/destroy', [controllerSparepart::class, 'destroy'])->name('admin.sparepart.destroy');
+    Route::get('/sparepart-pdf', [ControllerSparepart::class, 'sparepartPDF']);
+    Route::get('/sparepart-excel', [ControllerSparepart::class, 'sparepartExcel']);
 });
