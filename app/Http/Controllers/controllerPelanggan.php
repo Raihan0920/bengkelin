@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\DB as PelangganDB;
 class controllerPelanggan extends Controller
 {
     public function pelanggan(){
-        $ar_pelanggan = PelangganDB::table('pelanggans')->get();
+        $ar_pelanggan = PelangganDB::table('pelanggan')->get();
         return view('admin.pelanggan.pelanggan', compact('ar_pelanggan'));
     }
 
     public function pelangganPDF()
     {
         $pelanggan = Pelanggan::all();
-        $pdf = PDF::loadView('admin.pelanggan.pelangganPDF', ['pelanggans'=>$pelanggan]);
+        $pdf = PDF::loadView('admin.pelanggan.pelangganPDF', ['pelanggan'=>$pelanggan]);
         return $pdf->download('data_pelanggan.pdf');
     }
 
