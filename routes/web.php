@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\controllerMontir;
 use App\Http\Controllers\controllerPelanggan;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/pelanggan-pdf', [ControllerPelanggan::class, 'pelangganPDF']);
     Route::get('/pelanggan-excel', [ControllerPelanggan::class, 'pelangganExcel']);
     
-    
+    Route::resource('supplier', SupplierController::class);
 });
