@@ -3,6 +3,7 @@
 use App\Http\Controllers\controllerMontir;
 use App\Http\Controllers\controllerPelanggan;
 use App\Http\Controllers\controllerSparepart;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +73,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/{id}/destroy', [controllerSparepart::class, 'destroy'])->name('admin.sparepart.destroy');
     Route::get('/sparepart-pdf', [ControllerSparepart::class, 'sparepartPDF']);
     Route::get('/sparepart-excel', [ControllerSparepart::class, 'sparepartExcel']);
+    
+    //Supplier
+    Route::resource('supplier', SupplierController::class);
 });
+    

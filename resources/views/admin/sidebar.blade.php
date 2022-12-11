@@ -40,6 +40,7 @@
                  <a class="collapse-item" href="{{ route('montir.index') }}">Data Montir</a>
                  <a class="collapse-item" href="{{ route('pelanggan.pelanggan') }}">Data Pelanggan</a>
                  <a class="collapse-item" href="{{ route('sparepart.index') }}">Data Sparepart</a>
+                 <a class="collapse-item" href="{{ route('supplier.index') }}">Data Supplier</a>
              </div>
          </div>
      </li>
