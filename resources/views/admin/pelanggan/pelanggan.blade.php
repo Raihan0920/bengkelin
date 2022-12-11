@@ -22,6 +22,7 @@
                                 <th>Name</th>
                                 <th>KTP</th>
                                 <th>Alamat</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -29,9 +30,10 @@
                             @foreach ($ar_pelanggan as $plgn)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $plgn->nama }}</td>
+                                    <td>{{ $plgn->nama_pelanggan }}</td>
                                     <td>{{ $plgn->no_ktp }}</td>
-                                    <td>{{ $plgn->alamat }}</td>
+                                    <td>{{ $plgn->alamat_pelanggan }}</td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

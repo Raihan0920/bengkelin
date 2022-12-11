@@ -13,5 +13,7 @@ class Montir extends Model
 }
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'montir';
+    protected $fillable = ['nama','gender', 'alamat', 'nomor_telepon'];
 }

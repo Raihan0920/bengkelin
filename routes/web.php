@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\controllerMontir;
 use App\Http\Controllers\controllerPelanggan;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,6 @@ Route::middleware('auth')->group(function () {
     //PROFILE
     Route::get('/profile', [controllerProfile::class, 'profile'])->name('admin.profile.profile');
     // Route::get('/profile-pdf', [ControllerPelanggan::class, 'profilePDF']);
+    Route::resource('supplier', SupplierController::class);
+
 });
