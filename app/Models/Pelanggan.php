@@ -9,5 +9,7 @@ class Pelanggan extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'pelanggan';
+    protected $fillable = ['nama_pelanggan', 'no_ktp', 'alamat_pelanggan', 'motor_id'];
 }
