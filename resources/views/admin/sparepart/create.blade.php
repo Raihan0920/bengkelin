@@ -6,7 +6,7 @@
             <h1> Booking </h1>
             <div class="row">
                 <div class="col-lg-8">
-                    <form action="{{ url('/store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('sparepart.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="NAMA">Merek</label>

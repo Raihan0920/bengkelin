@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form method="POST" action="{{ route('admin.sparepart.update',$sparepart->id) }}"
+                    <form method="POST" action="{{ route('sparepart.update',$sparepart->id) }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
