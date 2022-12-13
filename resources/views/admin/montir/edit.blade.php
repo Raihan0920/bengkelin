@@ -18,7 +18,7 @@ $ar_gender = ['L','P'];
             @endif
             <div class="row">
                 <div class="col-lg-8">
-                    <form action="{{ route('admin.montir.update', $montir->id) }}" method="POST" enctype="multipart/form-data">    
+                    <form action="{{ route('montir.update', $montir->id) }}" method="POST" enctype="multipart/form-data">    
                     @csrf
                     @method('PUT') 
                         <div class="form-group">
@@ -51,7 +51,7 @@ $ar_gender = ['L','P'];
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                         <div class="form-group mt-2">
-                            <a href="{{ url('/montir') }}">
+                            <a href="{{ route('montir.index') }}">
                                  << </a>
                         </div>
                     </form>

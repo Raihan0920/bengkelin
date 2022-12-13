@@ -48,7 +48,8 @@ class controllerMontir extends Controller
             'nomor_telepon' => request('nomor_telepon')
         ]);
 
-        return redirect('/montir')->with('success', 'Data Pegawai Berhasil Diubah');
+        return redirect()->route('montir.index')
+                        ->with('success', 'Data Pegawai Berhasil Diubah');
     }
 
     /**
@@ -58,11 +59,6 @@ class controllerMontir extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    public function detail($id)
     {
         $ar_montir = Montir::find($id);
         return view('admin.montir.detail', compact('ar_montir'));
@@ -97,7 +93,7 @@ class controllerMontir extends Controller
 
         ]);
 
-        return redirect('/montir')
+        return redirect()->route('montir.index')
             ->with('success', 'Data Pegawai Berhasil Diubah');
     }
 
