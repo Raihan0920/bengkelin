@@ -4,6 +4,10 @@ use App\Http\Controllers\controllerMontir;
 use App\Http\Controllers\controllerPelanggan;
 use App\Http\Controllers\controllerSparepart;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\MotorController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\DetailServiceController;
+use App\Http\Controllers\controllerProfile;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -44,18 +48,23 @@ Route::middleware('auth')->group(function () {
 
     //MONTIR
     // Route::get('/admin', [MontirController::class, 'admin.montir.index']);
-    Route::get('/montir', [controllerMontir::class, 'index'])->name('montir.index');
-    route::get('/create', [controllerMontir::class, 'create'])->name('admin.montir.create');
-    route::post('/store', [controllerMontir::class, 'store']);
-    Route::get('/{id}/edit', [controllerMontir::class, 'edit'])->name('admin.montir.edit');
-    Route::put('/{id}', [controllerMontir::class, 'update'])->name('admin.montir.update');
-    Route::get('/{id}/detail', [controllerMontir::class, 'detail'])->name('admin.montir.detail');
-    Route::delete('/{id}/destroy', [controllerMontir::class, 'destroy'])->name('montir.destroy');
+    // Route::get('/montir', [controllerMontir::class, 'index'])->name('montir.index');
+    // route::get('/create', [controllerMontir::class, 'create'])->name('admin.montir.create');
+    // route::post('/store', [controllerMontir::class, 'store']);
+    // Route::get('/{id}/edit', [controllerMontir::class, 'edit'])->name('admin.montir.edit');
+    // Route::put('/{id}', [controllerMontir::class, 'update'])->name('admin.montir.update');
+    // Route::get('/{id}/detail', [controllerMontir::class, 'detail'])->name('admin.montir.detail');
+    // Route::delete('/{id}/destroy', [controllerMontir::class, 'destroy'])->name('montir.destroy');
+    Route::resource('montir', ControllerMontir::class);
     Route::get('/montir-pdf', [ControllerMontir::class, 'montirPDF']);
     Route::get('/montir-excel', [ControllerMontir::class, 'montirExcel']);
 
+    //Motor
+    Route::resource('motor', MotorController::class);
+
     //Pelanggan
-    Route::get('/pelanggan', [controllerPelanggan::class, 'pelanggan'])->name('pelanggan.pelanggan');
+    Route::resource('pelanggan', ControllerPelanggan::class);
+    //Route::get('/pelanggan', [controllerPelanggan::class, 'pelanggan'])->name('pelanggan.pelanggan');
     Route::get('/pelanggan-pdf', [ControllerPelanggan::class, 'pelangganPDF']);
     Route::get('/pelanggan-excel', [ControllerPelanggan::class, 'pelangganExcel']);
 
@@ -64,17 +73,25 @@ Route::middleware('auth')->group(function () {
     // Route::get('/profile-pdf', [ControllerPelanggan::class, 'profilePDF']);
 
     //Sparepart
-    Route::get('/sparepart', [controllerSparepart::class, 'index'])->name('sparepart.index');
-    route::get('/create', [controllerSparepart::class, 'create'])->name('admin.sparepart.create');
-    route::post('/store', [controllerSparepart::class, 'store'])->name('admin.sparepart.store');
-    Route::get('/{id}/edit', [controllerSparepart::class, 'edit'])->name('admin.sparepart.edit');
-    Route::put('/{id}', [controllerSparepart::class, 'update'])->name('admin.sparepart.update');
-    Route::get('/{id}/detail', [controllerSparepart::class, 'detail'])->name('admin.sparepart.detail');
-    Route::delete('/{id}/destroy', [controllerSparepart::class, 'destroy'])->name('admin.sparepart.destroy');
+    Route::resource('sparepart', controllerSparepart::class);
+    // Route::get('/sparepart', [controllerSparepart::class, 'index'])->name('sparepart.index');
+    // route::get('/create', [controllerSparepart::class, 'create'])->name('admin.sparepart.create');
+    // route::post('/store', [controllerSparepart::class, 'store'])->name('admin.sparepart.store');
+    // Route::get('/{id}/edit', [controllerSparepart::class, 'edit'])->name('admin.sparepart.edit');
+    // Route::put('/{id}', [controllerSparepart::class, 'update'])->name('admin.sparepart.update');
+    // Route::get('/{id}/detail', [controllerSparepart::class, 'detail'])->name('admin.sparepart.detail');
+    // Route::delete('/{id}/destroy', [controllerSparepart::class, 'destroy'])->name('admin.sparepart.destroy');
     Route::get('/sparepart-pdf', [ControllerSparepart::class, 'sparepartPDF']);
     Route::get('/sparepart-excel', [ControllerSparepart::class, 'sparepartExcel']);
     
     //Supplier
     Route::resource('supplier', SupplierController::class);
+
+    //service
+    Route::resource('service', ServiceController::class);
+
+    //Detail Service 
+    Route::resource('detailservice', DetailServiceController::class);
+    
 });
     

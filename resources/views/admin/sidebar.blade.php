@@ -38,9 +38,12 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header"></h6>
                  <a class="collapse-item" href="{{ route('montir.index') }}">Data Montir</a>
-                 <a class="collapse-item" href="{{ route('pelanggan.pelanggan') }}">Data Pelanggan</a>
+                 <a class="collapse-item" href="{{ route('pelanggan.index') }}">Data Pelanggan</a>
+                 <a class="collapse-item" href="{{ route('motor.index') }}">Data Motor</a>
                  <a class="collapse-item" href="{{ route('sparepart.index') }}">Data Sparepart</a>
                  <a class="collapse-item" href="{{ route('supplier.index') }}">Data Supplier</a>
+                 <a class="collapse-item" href="{{ route('service.index') }}">Data Service</a>
+                 <a class="collapse-item" href="{{ route('detailservice.index') }}">Data Detail Service</a>
              </div>
          </div>
      </li>
