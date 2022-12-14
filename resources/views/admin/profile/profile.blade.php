@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('layouts.app')
 
 @section('content')
     <section>
@@ -63,9 +63,9 @@
                                             placeholder="08**********">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" aria-describedby="emailHelp"
-                                            placeholder="Enter Email Address..." name="email">
+                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                            aria-describedby="emailHelp" placeholder="Enter Email Address..."
+                                            name="email">
                                     </div>
                                     <div class="row mb-3">
                                         <label for="password-confirm"

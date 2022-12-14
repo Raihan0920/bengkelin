@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Montir;
 use PDF;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB as MontirDB;
 
 class controllerMontir extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +42,7 @@ class controllerMontir extends Controller
      */
     public function store(Request $request)
     {
+
         // dd($request->all());
         MontirDB::table('montir')->insert([
             'nama' => request('nama'),
@@ -93,7 +96,7 @@ class controllerMontir extends Controller
             'nama' => request('nama'),
             'gender' => request('gender'),
             'alamat' => request('alamat'),
-            'nomor_telepon' => request('nomor_telepon') 
+            'nomor_telepon' => request('nomor_telepon')
 
         ]);
 
@@ -110,13 +113,14 @@ class controllerMontir extends Controller
     public function destroy($id)
     {
         $ar_montir = Montir::find($id)->delete();
+
         return redirect('/montir');
     }
 
     public function montirPDF()
     {
         $montir = Montir::all();
-        $pdf = PDF::loadView('admin.montir.montirPDF', ['montir'=>$montir]);
+        $pdf = PDF::loadView('admin.montir.montirPDF', ['montir' => $montir]);
         return $pdf->download('data_montir.pdf');
     }
 

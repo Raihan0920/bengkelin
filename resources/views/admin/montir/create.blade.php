@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('layouts.app')
 
 @section('content')
     <section>
@@ -38,7 +38,8 @@
                             <input type="text" name="nomor_telepon" class="form-control" placeholder="08**********">
                         </div>
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-primary" onclick="myallert()"> >> Tambah Montir << </button>
+                            <button type="submit" class="btn btn-primary" onclick="myallert()"> >> Tambah Montir <<
+                                    </button>
                         </div>
                         <div class="form-group mt-2">
                             <a href="{{ route('montir.index') }}">

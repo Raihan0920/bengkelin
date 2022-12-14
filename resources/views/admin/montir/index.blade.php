@@ -1,11 +1,11 @@
-@extends('admin.master')
+@extends('layouts.app')
 
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Montir</h1>
+        <h1 class="h3 mb-2 text-gray-800">MONTIR</h1>
         <p class="mb-4"></p>
 
         <!-- DataTables Example -->
