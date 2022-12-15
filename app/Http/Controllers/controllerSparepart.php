@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sparepart;
+use App\Models\Supplier;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SparepartExport;
@@ -29,7 +30,11 @@ class controllerSparepart extends Controller
      */
     public function create()
     {
-        return view('admin.sparepart.create');
+        $ar_supplier = SparepartDB::table('supplier')->get();
+
+        return view('admin.sparepart.create')->with([
+            'nama_supplier' => $ar_supplier
+        ]);
     }
 
     /**
@@ -40,13 +45,15 @@ class controllerSparepart extends Controller
      */
     public function store(Request $request)
     {
-        SparepartDB::table('spare_part')->insert([
-            'stok' => request('stok'),
-            'merek' => request('merek'),
-            'harga' => request('harga'),
+        Sparepart::create([
+            'suppliyer_idsuppliyer' => $request->suppliyer_idsuppliyer,
+            'nama_sparepart' => $request->nama_sparepart,
+            'merek' => $request->merek,
+            'harga' => $request->harga
         ]);
 
-        return redirect('/sparepart')->with('success', 'Data Sparepart berhasil diubah');
+        return redirect()->route('sparepart.index')
+                        ->with('success', 'Data Sparepart berhasil ditambah');
     }
 
     /**
@@ -75,7 +82,8 @@ class controllerSparepart extends Controller
     public function edit($id)
     {
         $sparepart = Sparepart::find($id);
-        return view('admin.sparepart.edit', compact('sparepart'));
+        $ar_supplier = Supplier::all(); 
+        return view('admin.sparepart.edit', compact('sparepart', 'ar_supplier'));
     }
 
     /**
@@ -85,17 +93,17 @@ class controllerSparepart extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sparepart $sparepart)
     {
-        SparepartDB::table('spare_part')->where('id', $id)->update([
-            'stok' => request('stok'),
-            'merek' => request('merek'),
-            'harga' => request('harga'),
-
+        $sparepart->update([
+            'suppliyer_idsuppliyer' => $request->suppliyer_idsuppliyer,
+            'nama_sparepart' => $request->nama_sparepart,
+            'merek' => $request->merek,
+            'harga' => $request->harga
         ]);
-
-        return redirect('/sparepart')
-            ->with('success', 'Data Pegawai Berhasil Diubah');
+        
+        return redirect()->route('sparepart.index')
+            ->with('success', 'Data Sparepart Berhasil Diubah');
     }
 
     /**
@@ -107,7 +115,8 @@ class controllerSparepart extends Controller
     public function destroy($id)
     {
         $ar_sparepart = Sparepart::find($id)->delete();
-        return redirect('/sparepart');
+        return redirect()->route('sparepart.index')
+                        ->with('success', 'Data Sparepart Berhasil Dihapus');;
     }
 
     public function sparepartPDF()

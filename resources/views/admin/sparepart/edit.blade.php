@@ -1,66 +1,62 @@
 @extends('admin.master')
+
 @section('content')
-@php
-@endphp
-<section class="section">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Form Input Sparepart</h5>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    <form method="POST" action="{{ route('sparepart.update',$sparepart->id) }}"
-                          enctype="multipart/form-data">
+    <section>
+        <div class="container mt-5">
+            <h1> Tambah Sparepart </h1>
+            <div class="row">
+                <div class="col-lg-8">
+                    <form action="{{ route('sparepart.update', $sparepart->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">merek</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="merek" value="{{ $sparepart->merek }}" class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label for="NAMA">Supplier</label>
+                            <select class="form-control main w-25" name="suppliyer_idsuppliyer">
+                                    <option selected>-- Pilih supplier --</option>
+                                    @foreach ($ar_supplier as $sp)
+                                    @php $sel = ($sp->id == $sparepart->suppliyer_idsuppliyer) ? 'selected' : ''; @endphp
+                                    <option value="{{$sp->id}}" {{$sel}} >{{$sp->nama}}</option>
+                                    @endforeach
+                            </select>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Stok</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="stok" value="{{ $sparepart->stok }}" class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label>Nama Barang</label>
+                            <input type="text" name="nama_sparepart" class="form-control" value="{{$sparepart->nama_sparepart}}">
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Harga</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="harga" value="{{ $sparepart->harga }}" class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label>Merek</label>
+                            <input type="text" name="merek" class="form-control" value="{{$sparepart->merek}}">
                         </div>
-
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10 ">
-
-                                <a class="btn btn-info" title="Kembali" href=" {{ url('sparepart') }}">
-                                    <i class="bi bi-arrow-left-square"> Kembali</i>
-                                </a>
-                                &nbsp;
-                                <button type="submit" class="btn btn-primary" title="Simpan Sparepart"><i
-                                        class="bi bi-save"></i> Ubah</button>
-                            </div>
+                        <div class="form-group">
+                            <label>Harga</label>
+                            <input type="number" name="harga" class="form-control" value="{{$sparepart->harga}}">
                         </div>
-
-                    </form><!-- End General Form Elements -->
-
+                        <div class="form-group mt-2">
+                            <a class="btn btn-info" title="Kembali" href=" {{ route('sparepart.index') }}">
+                                <i class="bi bi-arrow-left-square"> Kembali</i>
+                            </a>
+                            <button type="submit" class="btn btn-primary" onclick="myallert()"> Ubah </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
+            <script>
+                function myallert() {
+                    // document.getElementById('nomor_telepon').value = document.getElementById('nomor_telepon').value.replace(/\D/g,
+                    //     '') + '**********';
+                    swal({
+                            title: "Are you sure?",
+                            text: "Are you sure that you want to leave this page?",
+                            icon: "success",
+                            dangerMode: true,
+                        })
+                        .then(willDelete => {
+                            if (willDelete) {
+                                swal("Good Job!", "Anda berhasil menambahkan data sparepart!", "success");
+                            }
+                        });
+                }
+            </script>
         </div>
-    </div>
-</section>
-
-
+    </section>
 @endsection
