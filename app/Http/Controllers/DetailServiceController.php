@@ -19,7 +19,7 @@ class DetailServiceController extends Controller
      */
     public function index()
     {
-        $ar_detailService = DetailService::paginate(5);
+        $ar_detailService = DetailService::with('pelanggan','service','spare_part','montir')->paginate(5);
       
         return view('admin.detail_service.index',compact('ar_detailService'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -32,7 +32,11 @@ class DetailServiceController extends Controller
      */
     public function create()
     {
-        //
+        $pelanggan = Pelanggan::all();
+        $service = Service::all();
+        $montir = Montir::all();
+        $spare_part = Sparepart::all();
+        return view('admin.detail_service.create', compact('pelanggan','service','spare_part','montir'));
     }
 
     /**
@@ -43,7 +47,19 @@ class DetailServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DetailService::create([
+            'pelanggan_id' => $request->pelanggan_id,
+            'tanggal_service' => $request->tanggal_service,
+            'jam_masuk' => $request->jam_masuk,
+            'service_id' => $request->service_id,
+            'spare_part_id' => $request->spare_part_id,
+            'montir_id' => $request->montir_id,
+            'keluhan' => $request->keluhan,
+            'total_harga' => $request->total_harga,
+        ]);
+
+        return redirect()->route('detailservice.index')
+                        ->with('Berhasil menambahkan data Detail Service');
     }
 
     /**
@@ -52,7 +68,7 @@ class DetailServiceController extends Controller
      * @param  \App\Models\DetailService  $detailService
      * @return \Illuminate\Http\Response
      */
-    public function show(DetailService $detailService)
+    public function show(DetailService $detailservice)
     {
         //
     }
@@ -63,9 +79,14 @@ class DetailServiceController extends Controller
      * @param  \App\Models\DetailService  $detailService
      * @return \Illuminate\Http\Response
      */
-    public function edit(DetailService $detailService)
+    public function edit(DetailService $detailservice)
     {
-        //
+        
+        $pelanggan = Pelanggan::all();
+        $service = Service::all();
+        $montir = Montir::all();
+        $spare_part = Sparepart::all();
+        return view('admin.detail_service.edit', compact('pelanggan','service','spare_part','montir','detailservice'));
     }
 
     /**
@@ -75,9 +96,11 @@ class DetailServiceController extends Controller
      * @param  \App\Models\DetailService  $detailService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DetailService $detailService)
+    public function update(Request $request, DetailService $detailservice)
     {
-        //
+        $detailservice->update($request->all());
+        return redirect()->route('detailservice.index')
+                        ->with('Berhasil mengubah data Detail Service');
     }
 
     /**
@@ -86,8 +109,10 @@ class DetailServiceController extends Controller
      * @param  \App\Models\DetailService  $detailService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DetailService $detailService)
+    public function destroy(DetailService $detailservice)
     {
-        //
+        $detailservice->delete();
+        return redirect()->route('detailservice.index')
+                        ->with('success','Data detail service berhasil dihapus');
     }
 }
