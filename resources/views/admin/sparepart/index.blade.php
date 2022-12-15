@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Stok</th>
+                        <th scope="col">Nama</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Merek</th>
                         <th scope="col">Aksi</th>
@@ -41,7 +41,7 @@
                     @foreach($ar_sparepart as $row)
                     <tr>
                         <th scope="row">{{ $no++ }}</th>
-                        <td>{{ $row->stok }}</td>
+                        <td>{{ $row->nama_sparepart }}</td>
                         <td>{{ $row->harga }}</td>
                         <td>{{ $row->merek }}</td>
                         <td width="15%">
