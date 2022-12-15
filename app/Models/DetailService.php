@@ -21,4 +21,18 @@ class DetailService extends Model
         'keluhan',
         'total_harga'
     ];
+
+    public function pelanggan(){
+        return $this->belongsTo(Pelanggan::class);
+    }
+    public function service(){
+        return $this->belongsTo(Service::class);
+    }
+    public function montir(){
+        return $this->belongsTo(Montir::class);
+    }
+    public function spare_part(){
+        return $this->belongsTo(Sparepart::class);
+    }
+    
 }

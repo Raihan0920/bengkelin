@@ -11,4 +11,8 @@ class Service extends Model
     public $timestamps = false;
     protected $table = 'service';
     protected $fillable = ['nama_service', 'harga_service'];
+
+    public function detail_service(){
+        return $this->hasMany(DetailService::class);
+    }
 }

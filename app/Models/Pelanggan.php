@@ -12,4 +12,8 @@ class Pelanggan extends Model
     public $timestamps = false;
     protected $table = 'pelanggan';
     protected $fillable = ['nama_pelanggan', 'no_ktp', 'alamat_pelanggan', 'motor_id'];
+
+    public function detail_service(){
+        return $this->hasMany(DetailService::class);
+    }
 }
