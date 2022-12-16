@@ -29,13 +29,18 @@
                             <label>Harga</label>
                             <input type="number" name="harga" class="form-control">
                         </div>
-                        <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-primary" onclick="myallert()"> Simpan </button>
+                        <div class="form-group">
+                            <label>Upload Foto</label>
+                            <input type="file" name="foto_barang" class="form-control">
                         </div>
                         <div class="form-group mt-2">
                             <a class="btn btn-info" title="Kembali" href="{{ route('sparepart.index') }}">
                                 Kembali 
                             </a>
+                            <button type="submit" class="btn btn-primary" onclick="myallert()"> Simpan </button>
+                        </div>
+                        <div class="form-group mt-2">
+                            
                         </div>
                     </form>
                 </div>
@@ -45,8 +50,8 @@
                     // document.getElementById('nomor_telepon').value = document.getElementById('nomor_telepon').value.replace(/\D/g,
                     //     '') + '**********';
                     swal({
-                            title: "Are you sure?",
-                            text: "Are you sure that you want to leave this page?",
+                            title: "Data Sparepart",
+                            text: "Anda Berhasil Menambahkan Data Sparepart!",
                             icon: "success",
                             dangerMode: true,
                         })

@@ -31,6 +31,13 @@
                             <label>Harga</label>
                             <input type="number" name="harga" class="form-control" value="{{$sparepart->harga}}">
                         </div>
+                        <div class="form-group">
+                            <label>Upload Foto</label>
+                            <input type="file" name="foto_barang" class="form-control">
+                            @if(!empty($sparepart->foto_barang)) 
+                            <img src="{{url('admin/img')}}/{{$sparepart->foto_barang}}"  alt="" width="10%" >
+                            @endif
+                        </div>
                         <div class="form-group mt-2">
                             <a class="btn btn-info" title="Kembali" href=" {{ route('sparepart.index') }}">
                                 <i class="bi bi-arrow-left-square"> Kembali</i>
@@ -45,8 +52,8 @@
                     // document.getElementById('nomor_telepon').value = document.getElementById('nomor_telepon').value.replace(/\D/g,
                     //     '') + '**********';
                     swal({
-                            title: "Are you sure?",
-                            text: "Are you sure that you want to leave this page?",
+                            title: "Data Sparepart",
+                            text: "Anda Berhasil Menambahkan Data Sparepart!",
                             icon: "success",
                             dangerMode: true,
                         })
